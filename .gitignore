@@ -1,0 +1,12 @@
+# Dependencies / build (GitHub Pages では不要)
+node_modules/
+dist/
+.sass-cache/
+*.css.map
+.DS_Store
+Thumbs.db
+
+# ローカル作業用
+.cursor/
+
+# ※ style.css は GitHub Pages で使う本番CSSなので無視しない
