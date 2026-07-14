@@ -746,6 +746,10 @@ main,
   border-bottom: 2px dashed var(--pink-200);
 }
 
+.specs-table td {
+  font-weight: 700;
+}
+
 .specs-table tr:last-child th,
 .specs-table tr:last-child td {
   border-bottom: none;
