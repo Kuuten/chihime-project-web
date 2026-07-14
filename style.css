@@ -730,18 +730,27 @@ main,
   transform: translateY(-50%);
   width: 2.65rem;
   height: 2.65rem;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   border: 2px solid var(--pink-300);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.96);
   color: var(--pink-500);
-  font-family: var(--font-pop);
-  font-size: 1.85rem;
-  line-height: 1;
   box-shadow: 0 6px 16px rgba(255, 45, 138, 0.18);
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.chara-modal__nav::before {
+  content: "";
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-top: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+  box-sizing: border-box;
 }
 
 .chara-modal__nav:hover {
@@ -757,8 +766,16 @@ main,
   left: 0.55rem;
 }
 
+.chara-modal__nav--prev::before {
+  transform: translateX(0.12rem) rotate(-135deg);
+}
+
 .chara-modal__nav--next {
   right: 0.55rem;
+}
+
+.chara-modal__nav--next::before {
+  transform: translateX(-0.12rem) rotate(45deg);
 }
 
 /* ========== Specs ========== */
@@ -1025,7 +1042,11 @@ main,
   .chara-modal__nav {
     width: 2.35rem;
     height: 2.35rem;
-    font-size: 1.55rem;
+  }
+
+  .chara-modal__nav::before {
+    width: 0.48rem;
+    height: 0.48rem;
   }
 
   .chara-modal__nav--prev {
