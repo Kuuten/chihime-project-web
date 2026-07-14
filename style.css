@@ -659,13 +659,6 @@ main,
   text-shadow: none;
 }
 
-.chara-card__desc {
-  margin-top: 0.3rem;
-  font-size: 0.84rem;
-  color: var(--ink-soft);
-  line-height: 1.65;
-}
-
 /* ========== Character modal ========== */
 .chara-modal {
   padding: 0;
@@ -1045,10 +1038,6 @@ main,
     font-size: 1rem;
   }
 
-  .chara-card__desc {
-    font-size: 0.78rem;
-  }
-
   .chara-card__thumb {
     padding: 0.5rem;
   }
@@ -1132,13 +1121,6 @@ main,
 
   .chara-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .chara-card__desc {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .specs-cta .btn--large {
