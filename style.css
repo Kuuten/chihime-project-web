@@ -604,6 +604,15 @@ main,
   height: 92%;
   object-fit: contain;
   filter: drop-shadow(0 8px 12px rgba(43, 26, 40, 0.18));
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .chara-card:hover .chara-card__thumb img,
+  .chara-card:focus-visible .chara-card__thumb img {
+    animation: sd-wiggle 0.55s ease-in-out infinite;
+  }
 }
 
 .chara-card__body {
@@ -881,6 +890,14 @@ main,
   50% { box-shadow: 0 4px 0 #c9186a, 0 14px 34px rgba(255, 45, 138, 0.38); }
 }
 
+@keyframes sd-wiggle {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  20% { transform: translateX(-5px) rotate(-2.2deg); }
+  40% { transform: translateX(5px) rotate(2.2deg); }
+  60% { transform: translateX(-4px) rotate(-1.6deg); }
+  80% { transform: translateX(4px) rotate(1.6deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-visual,
@@ -888,6 +905,7 @@ main,
   .hero-logo,
   .btn--primary,
   .chara-card,
+  .chara-card__thumb img,
   .chara-modal__nav {
     animation: none;
     transition: none;
