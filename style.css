@@ -703,7 +703,8 @@ main,
 }
 
 .chara-modal__body {
-  padding: 1rem;
+  position: relative;
+  padding: 1rem 3.4rem;
   display: grid;
   place-items: center;
   background:
@@ -720,6 +721,44 @@ main,
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 12px 24px rgba(43, 26, 40, 0.25));
+}
+
+.chara-modal__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  width: 2.65rem;
+  height: 2.65rem;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--pink-300);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--pink-500);
+  font-family: var(--font-pop);
+  font-size: 1.85rem;
+  line-height: 1;
+  box-shadow: 0 6px 16px rgba(255, 45, 138, 0.18);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.chara-modal__nav:hover {
+  background: var(--pink-500);
+  color: #fff;
+}
+
+.chara-modal__nav:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.chara-modal__nav--prev {
+  left: 0.55rem;
+}
+
+.chara-modal__nav--next {
+  right: 0.55rem;
 }
 
 /* ========== Specs ========== */
@@ -831,7 +870,8 @@ main,
   .hero-meta,
   .hero-logo,
   .btn--primary,
-  .chara-card {
+  .chara-card,
+  .chara-modal__nav {
     animation: none;
     transition: none;
   }
@@ -974,12 +1014,26 @@ main,
   }
 
   .chara-modal__body {
-    padding: 0.75rem;
+    padding: 0.75rem 2.7rem;
     max-height: min(70vh, 640px);
   }
 
   .chara-modal__img {
     max-height: min(62vh, 560px);
+  }
+
+  .chara-modal__nav {
+    width: 2.35rem;
+    height: 2.35rem;
+    font-size: 1.55rem;
+  }
+
+  .chara-modal__nav--prev {
+    left: 0.3rem;
+  }
+
+  .chara-modal__nav--next {
+    right: 0.3rem;
   }
 
   .specs-table th,

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@500;700&family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20260714-specs" />
+  <link rel="stylesheet" href="style.css?v=20260714-modalnav" />
 </head>
 <body>
   <header class="site-header">
@@ -310,7 +310,9 @@
         <button type="button" class="chara-modal__close" aria-label="閉じる">&times;</button>
       </header>
       <div class="chara-modal__body">
+        <button type="button" class="chara-modal__nav chara-modal__nav--prev" aria-label="前のキャラクター">‹</button>
         <img id="chara-modal-img" class="chara-modal__img" src="" alt="" />
+        <button type="button" class="chara-modal__nav chara-modal__nav--next" aria-label="次のキャラクター">›</button>
       </div>
     </div>
   </dialog>
@@ -321,28 +323,67 @@
       const modalImg = document.getElementById("chara-modal-img");
       const modalTitle = document.getElementById("chara-modal-title");
       const closeBtn = modal.querySelector(".chara-modal__close");
+      const prevBtn = modal.querySelector(".chara-modal__nav--prev");
+      const nextBtn = modal.querySelector(".chara-modal__nav--next");
+      const cards = Array.from(document.querySelectorAll(".chara-card"));
+      let currentIndex = 0;
 
-      function openChara(fullSrc, name) {
+      function showChara(index) {
+        const total = cards.length;
+        if (!total) return;
+        currentIndex = ((index % total) + total) % total;
+        const card = cards[currentIndex];
+        const name = card.dataset.name;
+        const fullSrc = card.dataset.full;
         modalTitle.textContent = name;
         modalImg.src = fullSrc;
         modalImg.alt = name + " の全身立ち絵";
-        modal.showModal();
+      }
+
+      function openChara(index) {
+        showChara(index);
+        if (!modal.open) modal.showModal();
       }
 
       function closeChara() {
         modal.close();
       }
 
-      document.querySelectorAll(".chara-card").forEach((card) => {
+      function stepChara(delta) {
+        showChara(currentIndex + delta);
+      }
+
+      cards.forEach((card, index) => {
         card.addEventListener("click", () => {
-          openChara(card.dataset.full, card.dataset.name);
+          openChara(index);
         });
+      });
+
+      prevBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        stepChara(-1);
+      });
+
+      nextBtn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        stepChara(1);
       });
 
       closeBtn.addEventListener("click", closeChara);
 
       modal.addEventListener("click", (event) => {
         if (event.target === modal) closeChara();
+      });
+
+      modal.addEventListener("keydown", (event) => {
+        if (!modal.open) return;
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          stepChara(-1);
+        } else if (event.key === "ArrowRight") {
+          event.preventDefault();
+          stepChara(1);
+        }
       });
 
       modal.addEventListener("close", () => {
