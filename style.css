@@ -611,7 +611,7 @@ main,
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .chara-card:hover .chara-card__thumb img,
   .chara-card:focus-visible .chara-card__thumb img {
-    animation: sd-wiggle 0.55s ease-in-out infinite;
+    animation: sd-wiggle 0.55s ease-in-out 1;
   }
 }
 
